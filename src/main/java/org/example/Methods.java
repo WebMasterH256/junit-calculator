@@ -15,11 +15,8 @@ public class Methods {
   }
   
   public Double dividir(double a, double b) {
-    try {
-      return a / b;
-    } catch (ArithmeticException e) {
-      return null;
-    }
+    if (b == 0) return null;
+    return a / b;
   }
   
   public double potencia(double a, double b) {
