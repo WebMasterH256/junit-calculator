@@ -1,11 +1,20 @@
 package org.example;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class MethodTest {
 	
-	Methods m = new Methods();
+	private Methods m;
+	
+	//todo A anotação @BeforeEach é um método que é iniciado antes de quaisquer testes. Geralmente é usado para manter um objeto intacto a cada teste.
+	@BeforeEach
+	void setUp() {
+		m = new Methods();
+		System.out.println("Teste inicializado...");
+	}
 	
 	//todo Para indicar que um método é um teste, usa-se a anotação @Test
 	@Test
@@ -33,5 +42,31 @@ public class MethodTest {
 		
 		// 3. VERIFICAR (Assert)
 		assertEquals(7.0, resultado, 0.01);
+	}
+	
+	@Test
+	void testMultiplicar() {
+		double nA = 1.5;
+		double nB = 2.0;
+		
+		double resultado = m.multiplicar(nA, nB);
+		
+		assertEquals(3.0, resultado, 0.01);
+	}
+	
+	@Test
+	void testDividir() {
+		double nA = 10.0;
+		double nB = 2.0;
+		
+		double resultado = m.dividir(nA, nB);
+		
+		assertEquals(5, resultado, 0.01);
+	}
+	
+	@Test
+	void testNull() {
+		//todo Há um teste específico para null
+		assertNull(m.dividir(1, 0));
 	}
 }
